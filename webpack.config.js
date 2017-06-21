@@ -1,5 +1,6 @@
 var webpack = require('webpack');
 var path = require('path');
+var WebpackBuildNotifierPlugin = require('webpack-build-notifier');
 
 var BUILD_DIR = path.resolve(__dirname, 'src/client/public/');
 var APP_DIR = path.resolve(__dirname, 'src/client/app');
@@ -16,9 +17,9 @@ var config = {
   //   filename: 'bundle.js'
   // },
   output: {
-    path: __dirname,
+    path: BUILD_DIR,
     filename: 'bundle.js',
-    publicPath: '/static/'
+    publicPath: '/src/client/public'
   },
    resolve: {
     extensions: ['', '.js']
@@ -35,7 +36,12 @@ var config = {
   devtool: 'eval-source-map',
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
+    new WebpackBuildNotifierPlugin({
+      title: "My Project Webpack Build",
+      // logo: path.resolve("./img/favicon.png"),
+      suppressSuccess: true
+    })
   ]
 };
 

@@ -53,7 +53,7 @@ const User2 = withUserData(
 
 const App = () =>
   <div>
-    <h2>helloc</h2>
+    <h2>helloc I am spinner</h2>
     <User />
     <User2 />
   </div>

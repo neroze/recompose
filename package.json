@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-   "scripts": {
+  "scripts": {
     "start": "node server.js",
     "build": "cross-env BABEL_ENV=production ./node_modules/.bin/webpack --config webpack.config.production.js",
     "lint": "eslint --cache --ignore-path .gitignore --format=node_modules/eslint-formatter-pretty . *.js",
@@ -19,7 +19,8 @@
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "recompose": "^0.23.5",
-    "webpack": "^1.13.3"
+    "webpack": "^1.13.3",
+    "webpack-build-notifier": "^0.1.14"
   },
   "devDependencies": {
     "gulp-connect": "^5.0.0",
