@@ -5,10 +5,23 @@ var BUILD_DIR = path.resolve(__dirname, 'src/client/public/');
 var APP_DIR = path.resolve(__dirname, 'src/client/app');
 
 var config = {
-  entry: APP_DIR + '/index.js',
+  // entry: APP_DIR + '/index.js',
+  entry: [
+    'webpack-dev-server/client?http://localhost:5050',
+    'webpack/hot/dev-server',
+    APP_DIR + '/index.js'
+  ],
+  // output: {
+  //   path: BUILD_DIR,
+  //   filename: 'bundle.js'
+  // },
   output: {
-    path: BUILD_DIR,
-    filename: 'bundle.js'
+    path: __dirname,
+    filename: 'bundle.js',
+    publicPath: '/static/'
+  },
+   resolve: {
+    extensions: ['', '.js']
   },
   module : {
     loaders : [
@@ -19,26 +32,11 @@ var config = {
       }
     ]
   },
+  devtool: 'eval-source-map',
   plugins: [
-        new webpack.DefinePlugin({
-          'process.env': {
-            NODE_ENV: JSON.stringify('production')
-          }
-        }),
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin(),
-        new webpack.optimize.UglifyJsPlugin({
-                minimize: true,
-                compress: {
-                    warnings: false
-                }
-            })
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin()
   ]
-  ,devServer: {
-    // compress: true,
-    port: 9000,
-    // hot: true
-  }
 };
 
 module.exports = config;
